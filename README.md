@@ -14,4 +14,5 @@ Once again, code quality, readibility, and applicibility of best practices is th
 * Only Python code goes in the `aoc2022` folder. All puzzle input is saved in fixtures.
 * Everything should be runnable as a module from within the `python` folder - e.g. `python -m aoc2022.day1`
 * Unit tests that cover both the proposed sample cases *AND THE ACTUAL ANSWERS*.
+* Enforcing 100% test coverage.
 * Remember that your input is not necessarily going to match mine. That being said, tests will contain spoilers. Tread carefully.
