@@ -1,9 +1,10 @@
 """
 Day 5: Supply Stacks
 """
-import pathlib
 import re
 from collections import defaultdict
+
+from aoc2022 import utils
 
 
 class CrateMover9000:
@@ -48,7 +49,7 @@ class CrateMover9000:
         self.instructions = []
 
         temp_crates = defaultdict(list)
-        for line in pathlib.Path(path).read_text(encoding="utf-8").splitlines():
+        for line in utils.lines(path):
             if examining_crates:
                 if line.startswith(" 1"):
                     # Time to exit "examining crates mode". Eventually we'll convert the indexes to stack numbers.

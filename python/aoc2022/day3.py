@@ -1,8 +1,9 @@
 """
 Day 3: Rucksack Reorganization
 """
-import pathlib
 import string
+
+from aoc2022 import utils
 
 # By padding a space, this allows the index of the letter to correspond exactly to the items' priority.
 PRIORITIES = " " + string.ascii_lowercase + string.ascii_uppercase
@@ -50,7 +51,7 @@ def sum_rucksack(path: str) -> int:
     Returns:
         int: The total "duplicate item type" priorities of all the rucksacks in the file.
     """
-    items = [find_duplicate_item(rucksack) for rucksack in pathlib.Path(path).read_text(encoding="utf-8").splitlines()]
+    items = [find_duplicate_item(rucksack) for rucksack in utils.lines(path)]
     priorities = [get_priority(item) for item in items]
     return sum(priorities)
 
@@ -68,15 +69,14 @@ def priority_groups_of_three(path: str) -> int:
     Returns:
         int: The total of each set-of-threes' common badge item type priorities.
     """
-    with pathlib.Path(path).open("r", encoding="utf-8") as file:
-        sacks = [None, None, None]
-        priority_total = 0
-        for index, line in enumerate(file):
-            mod = index % 3
-            sacks[mod] = line.strip()
-            if mod == 2:
-                common_badge = (set(sacks[0]) & set(sacks[1]) & set(sacks[2])).pop()
-                priority_total += get_priority(common_badge)
+    sacks = [None, None, None]
+    priority_total = 0
+    for index, line in enumerate(utils.lines(path)):
+        mod = index % 3
+        sacks[mod] = line.strip()
+        if mod == 2:
+            common_badge = (set(sacks[0]) & set(sacks[1]) & set(sacks[2])).pop()
+            priority_total += get_priority(common_badge)
     return priority_total
 
 

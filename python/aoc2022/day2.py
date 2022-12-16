@@ -1,8 +1,9 @@
 """
 Day 2: Rock Paper Scissors
 """
-import pathlib
 from typing import Callable
+
+from aoc2022 import utils
 
 # Constants
 OPPONENT_ROCK = "A"
@@ -91,9 +92,8 @@ def total_score(path: str, strategy: Callable[[str, str], int]) -> int:
         int: _description_
     """
     total = 0
-    with pathlib.Path(path).open("r", encoding="utf-8") as file:
-        for line in file:
-            total += strategy(*line.strip().split(" "))
+    for line in utils.lines(path):
+        total += strategy(*line.strip().split(" "))
     return total
 
 

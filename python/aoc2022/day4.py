@@ -1,9 +1,10 @@
 """
 Day 4: Camp Cleanup
 """
-import pathlib
 import re
 from typing import Callable
+
+from aoc2022 import utils
 
 
 def strategy_full_containment(p1_start: int, p1_end: int, p2_start: int, p2_end: int) -> bool:
@@ -55,11 +56,10 @@ def count_shifts(path: str, strategy: Callable[[int, int, int, int], bool]) -> i
         int: Number of lines that pass the strategy function.
     """
     count = 0
-    with pathlib.Path(path).open("r", encoding="utf-8") as file:
-        for line in file:
-            p1_start, p1_end, p2_start, p2_end = (int(match) for match in re.findall(r"\d+", line))
-            if strategy(p1_start, p1_end, p2_start, p2_end):
-                count += 1
+    for line in utils.lines(path):
+        p1_start, p1_end, p2_start, p2_end = (int(match) for match in re.findall(r"\d+", line))
+        if strategy(p1_start, p1_end, p2_start, p2_end):
+            count += 1
     return count
 
 
