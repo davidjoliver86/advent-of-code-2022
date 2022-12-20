@@ -2,17 +2,16 @@
 General helper utilities
 """
 import pathlib
+from typing import Iterator
 
 
-def lines(path: str) -> list[str]:
+def lines(path: str) -> Iterator[str]:
     """
     Reads a file and returns a list of its lines. Optionally accepts a callable, and if provided,
     applies that callable to all lines.
     Args:
         path (str): Path of the file to read.
-        func (Callable, optional): Function to apply to each line (takes one argument). Defaults to None.
-        keep_empty (bool): Whether to keep empty lines
-    Returns:
-        list[Any]: A list of those lines with the callable applied if provided.
+    Yields:
+        str: An iterable of those lines.
     """
-    return pathlib.Path(path).read_text("utf-8").splitlines()
+    yield from pathlib.Path(path).read_text("utf-8").splitlines()
