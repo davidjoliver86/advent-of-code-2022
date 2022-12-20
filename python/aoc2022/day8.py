@@ -41,6 +41,8 @@ class Forest:
             return True
 
         # Check left and right
+        # Technically, left needs to be checked in reverse order, but since the condition must hold true for ALL trees,
+        # it doesn't really matter in the end.
         row = self._trees[tree_y]
         value = row[tree_x]
         left = row[:tree_x]
@@ -53,6 +55,8 @@ class Forest:
             return True
 
         # Check above and below
+        # Again, above needs to be checked in reverse order, but since the condition must hold true for ALL trees, it
+        # doesn't really matter in the end.
         col = [row[tree_x] for row in self._trees]
         above = col[:tree_y]
         below = col[tree_y + 1 :]
@@ -91,6 +95,7 @@ class Forest:
         below = col[tree_y + 1 :]
 
         # Declare loop enumeration variables to satisfy Pylint
+        # Because we already know the tree is not at an edge, we know there are spaces in all four directions.
         left_score: int
         right_score: int
         above_score: int
@@ -106,7 +111,7 @@ class Forest:
             if tree >= this_tree:
                 break
 
-        # Looking above- the [::-1] ensures we start above and look upward
+        # Looking above - the [::-1] ensures we start above and look upward
         for above_score, tree in enumerate(above[::-1], start=1):
             if tree >= this_tree:
                 break
