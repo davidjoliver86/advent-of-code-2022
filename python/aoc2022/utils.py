@@ -4,6 +4,15 @@ General helper utilities
 import pathlib
 from typing import Iterator
 
+# Directional Constants
+# Assuming a 2-dimensional "array", y-coordinates are the rows (the first index), and x-coordinates are the columns.
+
+UP = (-1, 0)
+DOWN = (1, 0)
+LEFT = (0, -1)
+RIGHT = (0, 1)
+DIRS = (UP, DOWN, LEFT, RIGHT)
+
 
 def lines(path: str) -> Iterator[str]:
     """

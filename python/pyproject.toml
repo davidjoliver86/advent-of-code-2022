@@ -3,3 +3,7 @@ line-length = 120
 
 [tool.pylint.'FORMAT']
 max-line-length = 120
+
+[tool.pylint]
+# R0914 - some functions need more local variables than an arbitrary "too many" value
+disable = ["R0914"]
